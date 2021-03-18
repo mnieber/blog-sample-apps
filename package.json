@@ -1,0 +1,15 @@
+{
+  "name": "mnieber-sample-apps",
+  "private": true,
+  "workspaces": [
+    "./skandha-sample",
+    "./navHandler-sample",
+    "./resourceStates-sample"
+  ],
+  "scripts": {
+    "skandha-sample": "yarn && yarn workspace skandha-sample dev",
+    "navHandler-sample": "yarn && yarn workspace navHandler-sample dev",
+    "resourceStates-sample": "yarn && yarn workspace resourceStates-sample dev"
+  },
+  "version": "0.1.0"
+}

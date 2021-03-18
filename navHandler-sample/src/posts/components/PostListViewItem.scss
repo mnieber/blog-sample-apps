@@ -1,0 +1,17 @@
+.PostListViewItem {
+  display: flex;
+  cursor: pointer;
+  flex-direction: row;
+  margin-bottom: 2px;
+  color: white;
+  user-select: none;
+}
+
+.PostListViewItem--selected {
+  background-color: gray;
+}
+
+.PostListViewItem--highlighted {
+  border: 1 solid white;
+  color: red;
+}
