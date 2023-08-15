@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  .btnBlueWithDarkText {
+    @apply bg-blue-400 text-blue-darkest hover:bg-blue-600;
+  }
+  .btnWithSkyBlueText {
+    @apply text-blue-400 hover:text-blue-600;
+  }
+  .btnDisabled {
+    @apply text-gray-400 hover:text-gray-400 border-gray-400;
+  }
+}

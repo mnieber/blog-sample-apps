@@ -2,14 +2,16 @@
   "name": "mnieber-sample-apps",
   "private": true,
   "workspaces": [
-    "./skandha-sample",
+    "./defaultProps-sample",
     "./navHandler-sample",
-    "./defaultProps-sample"
+    "./styleSystem-sample",
+    "./skandha-sample"
   ],
   "scripts": {
-    "skandha-sample": "yarn && yarn workspace skandha-sample dev",
+    "defaultProps-sample": "yarn && yarn workspace defaultProps-sample dev",
     "navHandler-sample": "yarn && yarn workspace navHandler-sample dev",
-    "defaultProps-sample": "yarn && yarn workspace defaultProps-sample dev"
+    "skandha-sample": "yarn && yarn workspace skandha-sample dev",
+    "styleSystem-sample": "yarn && yarn workspace styleSystem-sample dev"
   },
   "version": "0.1.0"
 }

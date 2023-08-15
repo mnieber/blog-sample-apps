@@ -1,0 +1,10 @@
+.Card {
+  .Card__Title {
+    @apply text-3xl font-bold;
+  }
+
+  .Card__Inset {
+    @apply text-xl;
+    @apply bg-blue-400;
+  }
+}
