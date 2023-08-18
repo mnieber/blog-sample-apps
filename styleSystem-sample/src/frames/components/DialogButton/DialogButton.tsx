@@ -19,6 +19,7 @@ export type PropsT = {
   className?: any;
   disabled?: boolean;
   fontSize?: 'medium' | 'big';
+  padding?: 'medium' | 'big';
   label: string;
 } & ButtonPropsT;
 
@@ -38,6 +39,7 @@ export const DialogButton = (
       className={cn(name, [
         'select-none',
         DialogButtonS.fontSize[props.fontSize ?? 'medium'](),
+        DialogButtonS.padding[props.padding ?? 'medium'](),
         {
           ['DialogButton--disabled']: disabled,
         },
@@ -54,5 +56,9 @@ export const DialogButtonS = {
   fontSize: {
     medium: () => 'text-base',
     big: () => 'text-xl',
+  },
+  padding: {
+    medium: () => 'px-4 py-2',
+    big: () => 'px-6 py-4',
   },
 };

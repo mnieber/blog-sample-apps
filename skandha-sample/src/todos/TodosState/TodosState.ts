@@ -14,8 +14,7 @@ You can continue by:
 */
 
 import * as Skandha from 'skandha';
-import { Deletion, Highlight, Selection } from 'skandha-facets';
-import { Filtering } from 'skandha-facets/facets/Filtering';
+import { Deletion, Filtering, Highlight, Selection } from 'skandha-facets';
 import { TodoT } from '/src/api/types';
 import { registerTodosCtr } from '/src/todos/TodosState/registerTodosCtr';
 import { TodosData } from '/src/todos/facets/TodosData';

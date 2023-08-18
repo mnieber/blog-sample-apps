@@ -1,0 +1,1 @@
+export { BadgeS } from './Badge';

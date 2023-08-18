@@ -8,6 +8,8 @@ Continue by:
 - Reading the DialogButton.tsx file.
 */
 
+import { AuthCard } from '/src/app/components/AuthCard';
+import { PreferencesCard } from '/src/app/components/PreferencesCard';
 import { CardS } from '/src/frames/components/Card';
 import { DialogButton } from '/src/frames/components/DialogButton/DialogButton';
 import { L } from '/src/frames/layout';
@@ -20,6 +22,8 @@ export const App = () => {
   return (
     <div className={cn('App')}>
       <div className={cn('App__Body', 'flex flex-col')}>
+        {/* Add a card inline. We'll use the header, inset
+        and footer from CardS. */}
         <div className={cn('AppCard', CardS.root())}>
           <div className={cn('AppCard__Title', CardS.title())}>
             Style system sample app
@@ -36,7 +40,10 @@ export const App = () => {
             The source code is annotated. Start by reading main.tsx.
           </div>
         </div>
-        <div className={cn('App_Buttons', L.row.skewer(), 'mt-8')}>
+
+        {/* Add some dialog buttons, using different themes */}
+        <div className="mt-8">Dialog buttons:</div>
+        <div className={cn('App_Buttons', L.row.skewer(), 'mt-4')}>
           <DialogButton
             componentClassName="Blue-DialogButton"
             label="Blue"
@@ -49,6 +56,12 @@ export const App = () => {
             fontSize="big"
           />
         </div>
+
+        {/* Add some cards with badges, that will look different depending
+        on their context (AuthCard or PreferencesCard) */}
+        <div className="mt-8">Cards with badges:</div>
+        <AuthCard className="mt-4" />
+        <PreferencesCard className="mt-4" />
       </div>
     </div>
   );

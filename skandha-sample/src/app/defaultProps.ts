@@ -1,6 +1,5 @@
 import { stub, withDefaultProps } from 'react-default-props-context';
-import { Deletion, Highlight, Selection } from 'skandha-facets';
-import { Filtering } from 'skandha-facets/facets/Filtering';
+import { Deletion, Filtering, Highlight, Selection } from 'skandha-facets';
 import { TodoT } from '/src/api/types';
 import { TodosState } from '/src/todos/TodosState';
 export { stub, withDefaultProps } from 'react-default-props-context';

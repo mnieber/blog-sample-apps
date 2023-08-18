@@ -11,7 +11,10 @@ import './Card.scss';
 
 export const CardS = {
   root: () => cn('Card', L.col.banner()),
-  title: () => cn('Card__Title', 'mt-4'),
-  inset: () => cn('Card__Inset', 'mt-4', 'p-4'),
+  // A card can have a title that floats above the inset.
+  title: () => cn('Card__Title', 'my-4'),
+  // The inset is a padded area with content
+  inset: () => cn('Card__Inset', L.col.banner(), 'p-4'),
+  // A card can have a footer that hangs below the inset.
   footer: () => cn('Card__Footer', 'mt-4'),
 };
