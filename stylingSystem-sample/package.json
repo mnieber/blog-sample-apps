@@ -1,5 +1,5 @@
 {
-  "name": "styleSystem-sample",
+  "name": "stylingSystem-sample",
   "dependencies": {
     "@vitejs/plugin-react": "^4.0.0",
     "autoprefixer": "^10.4.14",
