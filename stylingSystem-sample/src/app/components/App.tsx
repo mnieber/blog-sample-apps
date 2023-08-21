@@ -8,10 +8,12 @@ Continue by:
 - Reading the DialogButton.tsx file.
 */
 
-import { AuthCard } from '/src/app/components/AuthCard';
-import { PreferencesCard } from '/src/app/components/PreferencesCard';
 import { CardS } from '/src/frames/components/Card';
 import { DialogButton } from '/src/frames/components/DialogButton/DialogButton';
+import {
+  BlueDialogButtonTrim,
+  SkyBlueWithBorderDialogButtonTrim,
+} from '/src/frames/components/DialogButton/trims';
 import { L } from '/src/frames/layout';
 import { cn } from '/src/utils/classnames';
 
@@ -26,42 +28,34 @@ export const App = () => {
         and footer from CardS. */}
         <div className={cn('AppCard', CardS.root())}>
           <div className={cn('AppCard__Title', CardS.title())}>
-            Style system sample app
+            Styling system sample app
           </div>
           <div className={cn('AppCard__Inset', CardS.inset())}>
             <div className={cn('text-2xl font-bold mb-2')}>Notes:</div>
             <div>- This element is created with the CardS style object;</div>
-            <div>
-              - The buttons below are themed using the componentClassName
-              property.
-            </div>
+            <div>- The buttons below are styled using trim objects.</div>
           </div>
           <div className={cn('AppCard__Footer', CardS.footer())}>
             The source code is annotated. Start by reading main.tsx.
           </div>
         </div>
 
-        {/* Add some dialog buttons, using different themes */}
+        {/* Add some dialog buttons, using different trims */}
         <div className="mt-8">Dialog buttons:</div>
         <div className={cn('App_Buttons', L.row.skewer(), 'mt-4')}>
           <DialogButton
-            componentClassName="Blue-DialogButton"
+            trim={BlueDialogButtonTrim}
             label="Blue"
             className="mr-8"
+            iconName="arrowRight"
           />
           <DialogButton
-            componentClassName="SkyBlueWithBorder-DialogButton"
+            trim={SkyBlueWithBorderDialogButtonTrim}
             label="Border, big font & disabled"
             disabled={true}
-            fontSize="big"
+            iconName="close"
           />
         </div>
-
-        {/* Add some cards with badges, that will look different depending
-        on their context (AuthCard or PreferencesCard) */}
-        <div className="mt-8">Cards with badges:</div>
-        <AuthCard className="mt-4" />
-        <PreferencesCard className="mt-4" />
       </div>
     </div>
   );
