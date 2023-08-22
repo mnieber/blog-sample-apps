@@ -42,7 +42,7 @@ export const DialogButton = (props: PropsT) => {
   return (
     <button
       className={cn(
-        trim.base.root.componentName,
+        trim.base.componentName,
         'DialogButton',
         [
           getModeCn(mode.root),

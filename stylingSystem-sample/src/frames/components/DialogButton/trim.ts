@@ -1,11 +1,11 @@
 import { IconS } from '/src/frames/components/Icon';
-import { ModeT } from '/src/utils/trim';
+import { ModeOverlayT } from '/src/utils/trim';
 
 export type DialogButtonTrimT = {
   base: {
+    componentName: string;
     root: {
-      componentName: string;
-      border: any;
+      border?: any;
       color: any;
       fontSize: any;
       padding: any;
@@ -16,8 +16,8 @@ export type DialogButtonTrimT = {
       color: any;
     };
   };
-  danger?: ModeT<DialogButtonTrimT>;
-  disabled?: ModeT<DialogButtonTrimT>;
+  danger?: ModeOverlayT<DialogButtonTrimT>;
+  disabled?: ModeOverlayT<DialogButtonTrimT>;
 };
 
 export const DialogButtonS = {
@@ -43,10 +43,8 @@ export const DialogButtonS = {
 
 export const DefaultDialogButtonTrim = {
   base: {
+    componentName: 'Default',
     root: {
-      componentName: 'Default',
-      border: '',
-      color: '',
       fontSize: DialogButtonS.fontSize.medium(),
       padding: DialogButtonS.padding.medium(),
     },
@@ -65,4 +63,4 @@ export const DefaultDialogButtonTrim = {
       color: IconS.color.grayMedium(),
     },
   },
-} as DialogButtonTrimT;
+};
