@@ -16,7 +16,6 @@ export type DialogButtonTrimT = {
       color: any;
     };
   };
-  danger?: ModeOverlayT<DialogButtonTrimT>;
   disabled?: ModeOverlayT<DialogButtonTrimT>;
 };
 
@@ -43,7 +42,6 @@ export const DialogButtonS = {
 
 export const DefaultDialogButtonTrim = {
   base: {
-    componentName: 'Default',
     root: {
       fontSize: DialogButtonS.fontSize.medium(),
       padding: DialogButtonS.padding.medium(),
@@ -54,7 +52,6 @@ export const DefaultDialogButtonTrim = {
       color: IconS.color.gray(),
     },
   },
-  danger: undefined,
   disabled: {
     root: {
       color: DialogButtonS.color.disabled(),

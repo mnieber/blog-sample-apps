@@ -1,4 +1,4 @@
-export { DialogButton, type DialogButtonPropsT } from './DialogButton';
+export { DialogButton } from './DialogButton';
 export {
   DefaultDialogButtonTrim,
   DialogButtonS,

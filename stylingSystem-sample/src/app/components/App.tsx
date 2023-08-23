@@ -42,7 +42,7 @@ export const App = () => {
 
         {/* Add some dialog buttons, using different trims */}
         <div className="mt-8">Dialog buttons:</div>
-        <div className={cn('App_Buttons', L.row.skewer(), 'mt-4')}>
+        <div className={cn('App__Buttons', L.row.skewer(), 'mt-4')}>
           <DialogButton
             trim={BlueDialogButtonTrim}
             label="Blue"
