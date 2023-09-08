@@ -1,4 +1,3 @@
-import { action, makeObservable, observable } from 'mobx';
 import { sortNavPages } from '/src/navHandler/utils/sortNavPages';
 import { ObjT } from '/src/utils/types';
 
@@ -41,14 +40,14 @@ export class NavHandler {
     );
   }
 
-  _getNavPage(name: string): NavPageT | undefined {
+  _getNavPage(fnName: string): NavPageT | undefined {
     const sortedLayers = sortNavPages(
       this.navPages,
       document.location.pathname
     );
     for (let i = 0; i < sortedLayers.length; i++) {
       const layer = sortedLayers[i];
-      const handler = layer.fns[name];
+      const handler = layer.fns[fnName];
       if (handler) {
         return layer;
       }
@@ -56,21 +55,15 @@ export class NavHandler {
     return undefined;
   }
 
-  getNavFn<T>(name: string, f: T): T {
-    const navPage = this._getNavPage(name);
+  getNavFn<T>(fnName: string, f: T): T {
+    const navPage = this._getNavPage(fnName);
     if (!navPage) {
-      console.error(`NavHandler: no navPage found for ${name}`);
+      console.error(`NavHandler: no navPage found for ${fnName}`);
     }
-    return navPage?.fns[name] as T;
+    return navPage?.fns[fnName] as T;
   }
 
-  constructor(props: PropsT) {
-    makeObservable(this, {
-      navPages: observable,
-      installNavPage: action,
-      uninstallNavPage: action,
-    });
-  }
+  constructor(props: PropsT) {}
 }
 
 export const navHandler: NavHandler = new NavHandler({});
