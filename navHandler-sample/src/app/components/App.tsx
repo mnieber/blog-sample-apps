@@ -6,8 +6,8 @@ Continue by:
 */
 
 import { Router } from 'react-router-dom';
-import { history } from '/src/navHandler/NavHandler';
 import { UrlRouter } from '/src/routes/components/UrlRouter';
+import { history } from '/src/routes/history';
 import { cn } from '/src/utils/classnames';
 
 // Import styles

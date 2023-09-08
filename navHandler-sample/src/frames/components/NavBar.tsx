@@ -1,7 +1,8 @@
 import { observer } from 'mobx-react-lite';
-import { navHandler } from '/src/navHandler/NavHandler';
+import type { RoutesT as PostsRoutesT } from '/src/posts/routeTable';
 import { RouterLink } from '/src/routes/components/RouterLink';
-import { useRoutes } from '/src/routes/hooks';
+import { getRoutes } from '/src/routes/routeTable';
+import { getRouteMatch } from '/src/routes/utils/getRouteMatch';
 import { cn } from '/src/utils/classnames';
 
 // Import styles
@@ -12,8 +13,8 @@ export type PropsT = {
 };
 
 export const NavBar = observer((props: PropsT) => {
-  const routes = useRoutes();
-  const currentRoute = navHandler.getRouteMatch()?.path;
+  const routes = getRoutes<PostsRoutesT>();
+  const currentRoute = getRouteMatch()?.path;
 
   return (
     <div className={cn('NavBar', 'flex flex-row', props.className)}>

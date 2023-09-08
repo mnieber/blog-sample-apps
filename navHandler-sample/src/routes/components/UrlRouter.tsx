@@ -19,12 +19,13 @@ import { ArchivedPostsNavPage } from '/src/posts/components/ArchivedPostsNavPage
 import { PostListView } from '/src/posts/components/PostListView';
 import { PostView } from '/src/posts/components/PostView';
 import { PostsNavPage } from '/src/posts/components/PostsNavPage';
-import { useRoutes } from '/src/routes/hooks';
+import type { RoutesT as PostsRoutesT } from '/src/posts/routeTable';
+import { getRoutes } from '/src/routes/routeTable';
 
 type PropsT = {};
 
 export const UrlRouter = observer((props: PropsT) => {
-  const routes = useRoutes();
+  const routes = getRoutes<PostsRoutesT>();
   const posts = getPosts();
 
   return (

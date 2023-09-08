@@ -1,17 +1,19 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react';
-import { navHandler } from '/src/navHandler/NavHandler';
 import { useInstallNavPage } from '/src/navHandler/hooks';
 import { navToPost, navToPosts } from '/src/posts/navEvents';
+import type { RoutesT as PostsRoutesT } from '/src/posts/routeTable';
+import { history } from '/src/routes/history';
+import { getRouteUfns } from '/src/routes/routeTable';
 
 export const createPostsNavPage = () => {
   return {
     navToPosts: (() => {
-      const ufn = navHandler.routeUfns.posts(navHandler.history.push);
+      const ufn = getRouteUfns<PostsRoutesT>().posts(history.push);
       ufn();
     }) as typeof navToPosts,
     navToPost: ((postId: string) => {
-      const ufn = navHandler.routeUfns.post(navHandler.history.push);
+      const ufn = getRouteUfns<PostsRoutesT>().post(history.push);
       ufn({ postId });
     }) as typeof navToPost,
   };
