@@ -26,13 +26,16 @@ export class RouteTable {
 
   @computed get routeFnByName(): RouteFnByNameT {
     const result: RouteFnByNameT = {};
-    for (const route of R.values(this._routeSpecByName)) {
-      result[route.name] = (args?: unknown) => {
+    for (const routeSpec of R.values(this._routeSpecByName)) {
+      result[routeSpec.name] = (args?: unknown) => {
+        const routeArgs = routeSpec.getRouteArgs(args);
         const pathStr =
-          typeof route.path === 'function' ? route.path() : route.path;
-        return R.isEmpty(args ?? {})
-          ? route.prefix + pathStr
-          : generatePath(route.prefix + pathStr, args!);
+          typeof routeSpec.path === 'function'
+            ? routeSpec.path()
+            : routeSpec.path;
+        return R.isEmpty(routeArgs ?? {})
+          ? routeSpec.prefix + pathStr
+          : generatePath(routeSpec.prefix + pathStr, routeArgs!);
       };
     }
     return result;
@@ -42,8 +45,7 @@ export class RouteTable {
     const result: RouteUfnByNameT = {};
     for (const routeSpec of R.values(this._routeSpecByName)) {
       result[routeSpec.name] = (updateRoute: Function) => (args: unknown) => {
-        const routeArgs = routeSpec.getRouteArgs(args);
-        const newRoute = this.routeFnByName[routeSpec.name](routeArgs);
+        const newRoute = this.routeFnByName[routeSpec.name](args);
         const changed = pathname() !== newRoute;
         if (changed) {
           updateRoute(newRoute);
