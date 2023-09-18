@@ -1,9 +1,5 @@
 import { getRouteTable as getPostsRouteTable } from '/src/posts/routeTable';
-import {
-  RouteFnByNameT,
-  RouteTable,
-  RouteUfnByNameT,
-} from '/src/routes/utils/RouteTable';
+import { RouteFnByNameT, RouteTable } from '/src/routes/utils/RouteTable';
 
 export const createRouteTable = () => {
   const routeTable = new RouteTable();
@@ -13,10 +9,6 @@ export const createRouteTable = () => {
 
 export const routeTable = createRouteTable();
 
-export const getRoutes = <T>() => {
+export const getRouteFns = <T>() => {
   return routeTable.routeFnByName as RouteFnByNameT<T>;
-};
-
-export const getRouteUfns = <T>() => {
-  return routeTable.routeUfnByName as RouteUfnByNameT<T>;
 };

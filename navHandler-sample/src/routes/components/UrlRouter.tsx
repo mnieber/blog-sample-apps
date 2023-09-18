@@ -20,12 +20,12 @@ import { PostListView } from '/src/posts/components/PostListView';
 import { PostView } from '/src/posts/components/PostView';
 import { PostsNavHandler } from '/src/posts/components/PostsNavHandler';
 import type { RoutesT as PostsRoutesT } from '/src/posts/routeTable';
-import { getRoutes } from '/src/routes/routeTable';
+import { getRouteFns } from '/src/routes/routeTable';
 
 type PropsT = {};
 
 export const UrlRouter = observer((props: PropsT) => {
-  const routes = getRoutes<PostsRoutesT>();
+  const routeFns = getRouteFns<PostsRoutesT>();
   const posts = getPosts();
 
   return (
@@ -33,27 +33,27 @@ export const UrlRouter = observer((props: PropsT) => {
       <NavBar />
       <Switch>
         <Route exact path="/">
-          <Redirect to={routes.posts()} />
+          <Redirect to={routeFns.posts()} />
         </Route>
-        <Route path={routes.posts()}>
+        <Route path={routeFns.posts()}>
           <PostsNavHandler>
             <DefaultPropsProvider
               value={{ defaultProps: { posts: () => posts.posts } }}
             >
               <PostListView className="mt-2" />
-              <Route path={routes.post()}>
+              <Route path={routeFns.post()}>
                 <PostView className="mt-8 self-start" />
               </Route>
             </DefaultPropsProvider>
           </PostsNavHandler>
         </Route>
-        <Route path={routes.archivedPosts()}>
+        <Route path={routeFns.archivedPosts()}>
           <ArchivedPostsNavHandler>
             <DefaultPropsProvider
               value={{ defaultProps: { posts: () => posts.archivedPosts } }}
             >
               <PostListView className="mt-2" />
-              <Route path={routes.archivedPost()}>
+              <Route path={routeFns.archivedPost()}>
                 <PostView className="mt-8 self-start" />
               </Route>
             </DefaultPropsProvider>

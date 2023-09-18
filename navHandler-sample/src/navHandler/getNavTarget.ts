@@ -1,15 +1,15 @@
 import { NavContextT } from './hooks/useNavContext';
 
-export type NavT = {
-  path: string;
-  ufn: (path: string) => void;
+export type NavTargetT = {
+  url: string;
+  go: () => void;
 };
 
-export const getNavFn = <NavFn>(
+export const getNavTarget = <NavFn extends (...args: any[]) => NavTargetT>(
   navContext: NavContextT,
   navFnName: string,
   navFn: NavFn
-): ((...args: any[]) => NavT) => {
+): ((...args: Parameters<NavFn>) => NavTargetT) => {
   for (const handler of navContext.handlers) {
     if (handler.table[navFnName]) {
       return handler.table[navFnName];

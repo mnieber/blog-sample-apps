@@ -30,12 +30,12 @@ export const App = () => {
             </div>
             <div>
               - When a post is clicked then PostListView calls
-              nav(toPost(navContext, postId));
+              navToPost(navContext, postId).go();
             </div>
             <div>
-              - This will execute getNavFn(navContext, "navToPost") to return
-              the "navToPost" implementation from either PostsNavHandler or
-              ArchivedPostsNavHandler;
+              - This will execute getNavTarget(navContext, "navToPost") to
+              return the "navToPost" implementation from either PostsNavHandler
+              or ArchivedPostsNavHandler;
             </div>
           </div>
           <UrlRouter />

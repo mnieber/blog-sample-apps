@@ -1,26 +1,26 @@
 import React from 'react';
-import { NavHandlersProvider, type NavContextT } from '/src/navHandler';
+import {
+  NavHandlersProvider,
+  createNavTarget,
+  type NavContextT,
+} from '/src/navHandler';
+import { navToPost } from '/src/posts/navTargets';
 import type { RoutesT as PostsRoutesT } from '/src/posts/routeTable';
 import { history } from '/src/routes/history';
-import { getRoutes } from '/src/routes/routeTable';
+import { getRouteFns } from '/src/routes/routeTable';
 import { useBuilder } from '/src/utils/hooks/useBuilder';
+import { assertType } from '/src/utils/types';
 
 export const createPostsNavHandler = () => {
   return {
-    toPosts: (navContext: NavContextT) => {
-      const path = getRoutes<PostsRoutesT>().posts();
-      return {
-        path,
-        ufn: (path: string) => history.push(path),
-      };
-    },
-    toPost: (navContext: NavContextT, postId: string) => {
-      const path = getRoutes<PostsRoutesT>().post({ postId });
-      return {
-        path,
-        ufn: (path: string) => history.push(path),
-      };
-    },
+    navToPost: assertType<typeof navToPost>(
+      (navContext: NavContextT, postId: string) => {
+        return createNavTarget(
+          getRouteFns<PostsRoutesT>().post({ postId }),
+          history.push
+        );
+      }
+    ),
   };
 };
 
@@ -39,5 +39,3 @@ export const PostsNavHandler = (props: PropsT) => {
     </NavHandlersProvider>
   );
 };
-
-export const assertType = <T,>(x: T) => x;
