@@ -8,14 +8,16 @@ import { useBuilder } from '/src/utils/hooks/useBuilder';
 
 export const createPostsNavHandler = () => {
   return {
-    navToPosts: ((navContext: NavContextT) => {
+    navToPosts: assertType<typeof navToPosts>((navContext: NavContextT) => {
       const ufn = getRouteUfns<PostsRoutesT>().posts(history.push);
       ufn();
-    }) as typeof navToPosts,
-    navToPost: ((navContext: NavContextT, postId: string) => {
-      const ufn = getRouteUfns<PostsRoutesT>().post(history.push);
-      ufn({ postId });
-    }) as typeof navToPost,
+    }),
+    navToPost: assertType<typeof navToPost>(
+      (navContext: NavContextT, postId: string) => {
+        const ufn = getRouteUfns<PostsRoutesT>().post(history.push);
+        ufn({ postId });
+      }
+    ),
   };
 };
 
@@ -34,3 +36,5 @@ export const PostsNavHandler = (props: PropsT) => {
     </NavHandlersProvider>
   );
 };
+
+export const assertType = <T,>(x: T) => x;
