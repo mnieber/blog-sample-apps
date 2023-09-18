@@ -3,7 +3,7 @@ import {
   NavHandlersContext,
   type NavHandlerT,
 } from '../components/NavHandlersProvider';
-import { type NavTargetT } from '../getNavTarget';
+import { type NavTargetT } from '../getNavHandler';
 
 export type NavContextT = {
   requesterId: string;

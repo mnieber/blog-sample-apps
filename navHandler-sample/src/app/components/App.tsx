@@ -33,9 +33,9 @@ export const App = () => {
               navToPost(navContext, postId).go();
             </div>
             <div>
-              - This will execute getNavTarget(navContext, "navToPost") to
-              return the "navToPost" implementation from either PostsNavHandler
-              or ArchivedPostsNavHandler;
+              - This will execute getNavHandler(navContext, "navToPost") to
+              return the "navToPost" handler from either PostsNavHandler or
+              ArchivedPostsNavHandler;
             </div>
           </div>
           <UrlRouter />
