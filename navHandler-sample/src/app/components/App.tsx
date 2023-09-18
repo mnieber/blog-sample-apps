@@ -24,15 +24,18 @@ export const App = () => {
               - The source code is annotated. Start by reading main.tsx;
             </div>
             <div>
-              - Depending on the current url, PostsNavPage or
-              ArchivedPostsNavPage is mounted;
+              - PostListView calls navContext = useNavContext("PostListView") to
+              obtain the navigation handlers from all enclosing
+              NavHandlersProviders. Here, "PostListView" is the requester id;
             </div>
             <div>
-              - When a post is clicked then PostListView calls navToPost;
+              - When a post is clicked then PostListView calls
+              navToPost(navContext, postId);
             </div>
             <div>
-              - The navHandler handles "navToPost" by navigating to
-              /posts/:postId or /archived-posts/:postId.
+              - This will execute getNavFn(navContext, "navToPost") to return
+              the "navToPost" implementation from either PostsNavHandler or
+              ArchivedPostsNavHandler;
             </div>
           </div>
           <UrlRouter />

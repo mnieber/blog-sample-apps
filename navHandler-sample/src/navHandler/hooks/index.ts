@@ -1,1 +1,1 @@
-export { useInstallNavPage } from './useInstallNavPage';
+export { useNavContext } from './useNavContext';

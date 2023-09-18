@@ -1,7 +1,7 @@
-import { navHandler } from '/src/navHandler/NavHandler';
+import { getNavFn, type NavContextT } from '/src/navHandler';
 
-export const navToPosts = (): void =>
-  navHandler.getNavFn('navToPosts', navToPosts)();
+export const navToPosts = (navContext: NavContextT): void =>
+  getNavFn(navContext, 'navToPosts', navToPosts)(navContext);
 
-export const navToPost = (postId: string): void =>
-  navHandler.getNavFn('navToPost', navToPost)(postId);
+export const navToPost = (navContext: NavContextT, postId: string): void =>
+  getNavFn(navContext, 'navToPost', navToPost)(navContext, postId);
