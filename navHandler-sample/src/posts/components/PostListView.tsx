@@ -3,7 +3,7 @@ import { withDefaultProps } from 'react-default-props-context';
 import { PostT } from '/src/api/types';
 import { useNavContext } from '/src/navHandler';
 import { PostListViewItem } from '/src/posts/components';
-import { navToPost } from '/src/posts/navEvents';
+import { nav, toPost } from '/src/posts/navEvents';
 import { cn } from '/src/utils/classnames';
 
 // Import styles
@@ -25,7 +25,7 @@ export const PostListView = observer(
       <PostListViewItem
         key={post.id}
         post={post}
-        onClick={() => navToPost(navContext, post.id)}
+        onClick={() => nav(toPost(navContext, post.id))}
       />
     ));
 

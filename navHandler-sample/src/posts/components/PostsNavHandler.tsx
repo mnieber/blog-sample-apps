@@ -1,23 +1,26 @@
 import React from 'react';
 import { NavHandlersProvider, type NavContextT } from '/src/navHandler';
-import { navToPost, navToPosts } from '/src/posts/navEvents';
 import type { RoutesT as PostsRoutesT } from '/src/posts/routeTable';
 import { history } from '/src/routes/history';
-import { getRouteUfns } from '/src/routes/routeTable';
+import { getRoutes } from '/src/routes/routeTable';
 import { useBuilder } from '/src/utils/hooks/useBuilder';
 
 export const createPostsNavHandler = () => {
   return {
-    navToPosts: assertType<typeof navToPosts>((navContext: NavContextT) => {
-      const ufn = getRouteUfns<PostsRoutesT>().posts(history.push);
-      ufn();
-    }),
-    navToPost: assertType<typeof navToPost>(
-      (navContext: NavContextT, postId: string) => {
-        const ufn = getRouteUfns<PostsRoutesT>().post(history.push);
-        ufn({ postId });
-      }
-    ),
+    toPosts: (navContext: NavContextT) => {
+      const path = getRoutes<PostsRoutesT>().posts();
+      return {
+        path,
+        ufn: (path: string) => history.push(path),
+      };
+    },
+    toPost: (navContext: NavContextT, postId: string) => {
+      const path = getRoutes<PostsRoutesT>().post({ postId });
+      return {
+        path,
+        ufn: (path: string) => history.push(path),
+      };
+    },
   };
 };
 

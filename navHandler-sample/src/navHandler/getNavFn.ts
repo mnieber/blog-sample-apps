@@ -1,10 +1,15 @@
 import { NavContextT } from './hooks/useNavContext';
 
+export type NavT = {
+  path: string;
+  ufn: (path: string) => void;
+};
+
 export const getNavFn = <NavFn>(
   navContext: NavContextT,
   navFnName: string,
   navFn: NavFn
-): NavFn => {
+): ((...args: any[]) => NavT) => {
   for (const handler of navContext.handlers) {
     if (handler.table[navFnName]) {
       return handler.table[navFnName];

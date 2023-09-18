@@ -30,7 +30,7 @@ export const App = () => {
             </div>
             <div>
               - When a post is clicked then PostListView calls
-              navToPost(navContext, postId);
+              nav(toPost(navContext, postId));
             </div>
             <div>
               - This will execute getNavFn(navContext, "navToPost") to return

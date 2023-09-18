@@ -1,7 +1,11 @@
-import { getNavFn, type NavContextT } from '/src/navHandler';
+import { getNavFn, type NavContextT, type NavT } from '/src/navHandler';
 
-export const navToPosts = (navContext: NavContextT): void =>
-  getNavFn(navContext, 'navToPosts', navToPosts)(navContext);
+export const nav = (x: NavT) => x.ufn(x.path);
 
-export const navToPost = (navContext: NavContextT, postId: string): void =>
-  getNavFn(navContext, 'navToPost', navToPost)(navContext, postId);
+export const toPost = (navContext: NavContextT, postId: string) => {
+  return getNavFn(navContext, 'toPost', toPost)(navContext, postId);
+};
+
+export const toPosts = (navContext: NavContextT) => {
+  return getNavFn(navContext, 'toPosts', toPosts)(navContext);
+};
