@@ -1,11 +1,6 @@
+export type { NavContext, NavFunctionT, NavHandlerT } from './NavContext';
+export { stubNavTarget } from './NavTargetT';
+export type { NavTargetT } from './NavTargetT';
 export { NavHandlersProvider } from './components/NavHandlersProvider';
-export type { NavHandlerT } from './components/NavHandlersProvider';
-export {
-  createNavFunction,
-  createNavTarget,
-  getBoundNavFunction,
-  stub,
-} from './createNavFunction';
-export type { NavFunctionT, NavTargetT } from './createNavFunction';
+export { createNavFunction, getBoundNavFunction } from './createNavFunction';
 export { useNavContext } from './hooks/useNavContext';
-export type { NavContextT } from './hooks/useNavContext';

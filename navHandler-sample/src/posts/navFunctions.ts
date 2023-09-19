@@ -1,6 +1,6 @@
-import { createNavFunction, stub } from '/src/navHandler';
+import { createNavFunction, stubNavTarget } from '/src/navHandler';
 
 export const navToPost = createNavFunction(
   'navToPost',
-  (postId: string) => stub
+  (postId: string) => stubNavTarget
 );

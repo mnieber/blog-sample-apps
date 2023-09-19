@@ -22,13 +22,13 @@ export const PostListView = observer(
     const navContext = useNavContext('PostListView');
 
     const postDivs = props.posts.map((post) => {
-      const navTarget = navToPost(navContext)(post.id);
+      const navTarget = navContext.navTarget(navToPost)(post.id);
       return (
         <PostListViewItem
           key={post.id}
           post={post}
           url={navTarget.url}
-          onClick={() => navTarget.go()}
+          onClick={() => navTarget.nav()}
         />
       );
     });

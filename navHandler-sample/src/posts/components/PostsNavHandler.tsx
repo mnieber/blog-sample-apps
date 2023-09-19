@@ -1,9 +1,5 @@
 import React from 'react';
-import {
-  NavHandlersProvider,
-  createNavTarget,
-  type NavContextT,
-} from '/src/navHandler';
+import { NavContext, NavHandlersProvider } from '/src/navHandler';
 import { navToPost } from '/src/posts/navFunctions';
 import type { RoutesT as PostsRoutesT } from '/src/posts/routeTable';
 import { history } from '/src/routes/history';
@@ -12,11 +8,10 @@ import { useBuilder } from '/src/utils/hooks/useBuilder';
 
 export const createNavFunctionTable = () => {
   return {
-    navToPost: ((navContext: NavContextT) => (postId: string) =>
-      createNavTarget(
-        getRouteFns<PostsRoutesT>().post({ postId }),
-        history.push
-      )) as typeof navToPost,
+    navToPost: ((navContext: NavContext) => (postId: string) => {
+      const url = getRouteFns<PostsRoutesT>().post({ postId });
+      return { url, nav: () => history.push(url) };
+    }) as typeof navToPost,
   };
 };
 

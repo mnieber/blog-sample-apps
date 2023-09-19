@@ -30,11 +30,11 @@ export const App = () => {
             </div>
             <div>
               - When a post is clicked then PostListView calls
-              toPost(navContext)(postId).nav();
+              navContext.nav(toPost)({'{ '}postId{' }'});
             </div>
             <div>
-              - This will use getBoundNavFunction(navContext, "toPost") to
-              return the "toPost" navigation function from either
+              - This will under the hood use getBoundNavFunction(navContext,
+              "toPost") to execute the "toPost" navigation function from either
               PostsNavHandler or ArchivedPostsNavHandler;
             </div>
           </div>
