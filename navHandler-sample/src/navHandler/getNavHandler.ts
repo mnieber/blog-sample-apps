@@ -5,13 +5,14 @@ export type NavTargetT = {
   go: () => void;
 };
 
-export type NavHandlerT = (...args: any[]) => NavTargetT;
+export type NavHandlerT = (
+  navContext: NavContextT
+) => (...args: any[]) => NavTargetT;
 
-export const getNavHandler = <NavFn extends NavHandlerT>(
+export const getNavHandler = <NavFn>(
   navContext: NavContextT,
-  navFnName: string,
-  navFn: NavFn
-): ((...args: Parameters<NavFn>) => NavTargetT) => {
+  navFnName: string
+): NavFn => {
   for (const handler of navContext.handlers) {
     if (handler.table[navFnName]) {
       const navTargetFn = handler.table[navFnName](navContext);
@@ -29,3 +30,12 @@ export const getNavHandler = <NavFn extends NavHandlerT>(
       `${navContext.requesterId}. Handlers: ${handlerNamesStr}`
   );
 };
+
+export function createNavFunction<
+  BoundNavFn extends (...args: any[]) => NavTargetT
+>(fnName: string, boundNavFn: BoundNavFn) {
+  return (navContext: NavContextT) =>
+    getNavHandler<BoundNavFn>(navContext, fnName);
+}
+
+export const stub = undefined as unknown as NavTargetT;

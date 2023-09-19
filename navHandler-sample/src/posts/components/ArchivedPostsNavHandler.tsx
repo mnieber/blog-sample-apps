@@ -14,14 +14,12 @@ import { assertType } from '/src/utils/types';
 export const createArchivedPostsNavHandler = () => {
   return {
     navToPost: (navContext: NavContextT) =>
-      assertType<typeof navToPost>(
-        (navContext: NavContextT, postId: string) => {
-          return createNavTarget(
-            getRouteFns<PostsRoutesT>().archivedPost({ postId }),
-            history.push
-          );
-        }
-      ),
+      assertType<ReturnType<typeof navToPost>>((postId: string) => {
+        return createNavTarget(
+          getRouteFns<PostsRoutesT>().archivedPost({ postId }),
+          history.push
+        );
+      }),
   };
 };
 

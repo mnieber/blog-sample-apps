@@ -22,7 +22,7 @@ export const PostListView = observer(
     const navContext = useNavContext('PostListView');
 
     const postDivs = props.posts.map((post) => {
-      const navTarget = navToPost(navContext, post.id);
+      const navTarget = navToPost(navContext)(post.id);
       return (
         <PostListViewItem
           key={post.id}

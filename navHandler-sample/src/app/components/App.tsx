@@ -30,7 +30,7 @@ export const App = () => {
             </div>
             <div>
               - When a post is clicked then PostListView calls
-              navToPost(navContext, postId).go();
+              navToPost(navContext)(postId).go();
             </div>
             <div>
               - This will execute getNavHandler(navContext, "navToPost") to

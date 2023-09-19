@@ -1,12 +1,6 @@
-import {
-  getNavHandler,
-  type NavContextT,
-  type NavTargetT,
-} from '/src/navHandler';
+import { createNavFunction, stub } from '/src/navHandler/getNavHandler';
 
-export const navToPost = (
-  navContext: NavContextT,
-  postId: string
-): NavTargetT => {
-  return getNavHandler(navContext, 'navToPost', navToPost)(navContext, postId);
-};
+export const navToPost = createNavFunction(
+  'navToPost',
+  (postId: string) => stub
+);
