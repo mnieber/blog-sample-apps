@@ -1,6 +1,7 @@
 export { NavHandlersProvider } from './components/NavHandlersProvider';
 export type { NavHandlerT } from './components/NavHandlersProvider';
 export {
+  assertNavFnType,
   createNavFunction,
   getBoundNavFunction,
   stub,

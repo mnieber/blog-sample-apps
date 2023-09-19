@@ -5,19 +5,20 @@ export type NavTargetT = {
   go: () => void;
 };
 
-export type NavHandlerT = (
-  navContext: NavContextT
-) => (...args: any[]) => NavTargetT;
+export type BoundNavFunctionT = (...args: any[]) => NavTargetT;
+export type NavFunctionT = (navContext: NavContextT) => BoundNavFunctionT;
+export type NavHandlerT = (navContext: NavContextT) => BoundNavFunctionT;
 
 export const getBoundNavFunction = (
   navContext: NavContextT,
   navFnName: string
 ) => {
   for (const handler of navContext.handlers) {
-    if (handler.table[navFnName]) {
-      const navTargetFn = handler.table[navFnName](navContext);
-      if (navTargetFn) {
-        return navTargetFn;
+    const navFunction = handler.navFunctionTable[navFnName];
+    if (navFunction) {
+      const boundNavFunction = navFunction(navContext);
+      if (boundNavFunction) {
+        return boundNavFunction;
       }
     }
   }
@@ -31,11 +32,19 @@ export const getBoundNavFunction = (
   );
 };
 
-export function createNavFunction<
-  BoundNavFn extends (...args: any[]) => NavTargetT
->(fnName: string, boundNavFnStub: BoundNavFn) {
+export function createNavFunction<BoundNavFn extends BoundNavFunctionT>(
+  fnName: string,
+  boundNavFnStub: BoundNavFn
+) {
   return (navContext: NavContextT) =>
     getBoundNavFunction(navContext, fnName) as BoundNavFn;
 }
 
 export const stub = undefined as unknown as NavTargetT;
+
+export const assertNavFnType = <NavFn extends NavFunctionT>(
+  navFn: NavFn,
+  boundNavFn: ReturnType<NavFn>
+) => {
+  return boundNavFn;
+};

@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 export type ObjT = { [key: string]: any };
-export type NavHandlerT = { id: string; table: ObjT };
+export type NavHandlerT = { id: string; navFunctionTable: ObjT };
 
 export const NavHandlersContext = React.createContext<NavHandlerT[]>([]);
 

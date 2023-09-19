@@ -9,17 +9,15 @@ import type { RoutesT as PostsRoutesT } from '/src/posts/routeTable';
 import { history } from '/src/routes/history';
 import { getRouteFns } from '/src/routes/routeTable';
 import { useBuilder } from '/src/utils/hooks/useBuilder';
-import { assertType } from '/src/utils/types';
 
-export const createPostsNavHandler = () => {
+export const createNavFunctionTable = () => {
   return {
-    navToPost: (navContext: NavContextT) =>
-      assertType<ReturnType<typeof navToPost>>((postId: string) => {
-        return createNavTarget(
-          getRouteFns<PostsRoutesT>().post({ postId }),
-          history.push
-        );
-      }),
+    navToPost: ((navContext: NavContextT) => (postId: string) => {
+      return createNavTarget(
+        getRouteFns<PostsRoutesT>().post({ postId }),
+        history.push
+      );
+    }) as typeof navToPost,
   };
 };
 
@@ -29,7 +27,7 @@ export const PostsNavHandler = (props: PropsT) => {
   const handler = useBuilder(() => {
     return {
       id: 'PostsNavHandler',
-      table: createPostsNavHandler(),
+      navFunctionTable: createNavFunctionTable(),
     };
   });
   return (

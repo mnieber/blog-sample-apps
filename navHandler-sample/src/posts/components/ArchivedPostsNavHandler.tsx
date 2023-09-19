@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   NavHandlersProvider,
+  assertNavFnType,
   createNavTarget,
   type NavContextT,
 } from '/src/navHandler';
@@ -9,12 +10,11 @@ import type { RoutesT as PostsRoutesT } from '/src/posts/routeTable';
 import { history } from '/src/routes/history';
 import { getRouteFns } from '/src/routes/routeTable';
 import { useBuilder } from '/src/utils/hooks/useBuilder';
-import { assertType } from '/src/utils/types';
 
-export const createArchivedPostsNavHandler = () => {
+export const createNavFunctionTable = () => {
   return {
     navToPost: (navContext: NavContextT) =>
-      assertType<ReturnType<typeof navToPost>>((postId: string) => {
+      assertNavFnType(navToPost, (postId: string) => {
         return createNavTarget(
           getRouteFns<PostsRoutesT>().archivedPost({ postId }),
           history.push
@@ -29,7 +29,7 @@ export const ArchivedPostsNavHandler = (props: PropsT) => {
   const handler = useBuilder(() => {
     return {
       id: 'ArchivedPostsNavHandler',
-      table: createArchivedPostsNavHandler(),
+      navFunctionTable: createNavFunctionTable(),
     };
   });
   return (
