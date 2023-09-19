@@ -3,7 +3,7 @@ import { withDefaultProps } from 'react-default-props-context';
 import { PostT } from '/src/api/types';
 import { useNavContext } from '/src/navHandler';
 import { PostListViewItem } from '/src/posts/components';
-import { navToPost } from '/src/posts/navTargets';
+import { navToPost } from '/src/posts/navFunctions';
 import { cn } from '/src/utils/classnames';
 
 // Import styles

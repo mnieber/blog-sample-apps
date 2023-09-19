@@ -4,7 +4,7 @@ import {
   createNavTarget,
   type NavContextT,
 } from '/src/navHandler';
-import { navToPost } from '/src/posts/navTargets';
+import { navToPost } from '/src/posts/navFunctions';
 import type { RoutesT as PostsRoutesT } from '/src/posts/routeTable';
 import { history } from '/src/routes/history';
 import { getRouteFns } from '/src/routes/routeTable';

@@ -9,10 +9,10 @@ export type NavHandlerT = (
   navContext: NavContextT
 ) => (...args: any[]) => NavTargetT;
 
-export const getNavHandler = <NavFn>(
+export const getBoundNavFunction = (
   navContext: NavContextT,
   navFnName: string
-): NavFn => {
+) => {
   for (const handler of navContext.handlers) {
     if (handler.table[navFnName]) {
       const navTargetFn = handler.table[navFnName](navContext);
@@ -33,9 +33,9 @@ export const getNavHandler = <NavFn>(
 
 export function createNavFunction<
   BoundNavFn extends (...args: any[]) => NavTargetT
->(fnName: string, boundNavFn: BoundNavFn) {
+>(fnName: string, boundNavFnStub: BoundNavFn) {
   return (navContext: NavContextT) =>
-    getNavHandler<BoundNavFn>(navContext, fnName);
+    getBoundNavFunction(navContext, fnName) as BoundNavFn;
 }
 
 export const stub = undefined as unknown as NavTargetT;

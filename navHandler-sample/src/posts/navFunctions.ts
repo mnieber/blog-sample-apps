@@ -1,4 +1,4 @@
-import { createNavFunction, stub } from '/src/navHandler/getNavHandler';
+import { createNavFunction, stub } from '/src/navHandler';
 
 export const navToPost = createNavFunction(
   'navToPost',
