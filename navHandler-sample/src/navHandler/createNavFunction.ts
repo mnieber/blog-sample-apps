@@ -41,3 +41,7 @@ export function createNavFunction<BoundNavFn extends BoundNavFunctionT>(
 }
 
 export const stub = undefined as unknown as NavTargetT;
+
+export const createNavTarget = (url: string, ufn: Function): NavTargetT => {
+  return { url, go: () => ufn(url) };
+};
