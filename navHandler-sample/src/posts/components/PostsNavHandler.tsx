@@ -12,12 +12,11 @@ import { useBuilder } from '/src/utils/hooks/useBuilder';
 
 export const createNavFunctionTable = () => {
   return {
-    navToPost: ((navContext: NavContextT) => (postId: string) => {
-      return createNavTarget(
+    navToPost: ((navContext: NavContextT) => (postId: string) =>
+      createNavTarget(
         getRouteFns<PostsRoutesT>().post({ postId }),
         history.push
-      );
-    }) as typeof navToPost,
+      )) as typeof navToPost,
   };
 };
 

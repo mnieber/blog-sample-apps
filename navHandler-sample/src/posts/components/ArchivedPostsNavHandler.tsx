@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   NavHandlersProvider,
-  assertNavFnType,
   createNavTarget,
   type NavContextT,
 } from '/src/navHandler';
@@ -13,13 +12,11 @@ import { useBuilder } from '/src/utils/hooks/useBuilder';
 
 export const createNavFunctionTable = () => {
   return {
-    navToPost: (navContext: NavContextT) =>
-      assertNavFnType(navToPost, (postId: string) => {
-        return createNavTarget(
-          getRouteFns<PostsRoutesT>().archivedPost({ postId }),
-          history.push
-        );
-      }),
+    navToPost: ((navContext: NavContextT) => (postId: string) =>
+      createNavTarget(
+        getRouteFns<PostsRoutesT>().archivedPost({ postId }),
+        history.push
+      )) as typeof navToPost,
   };
 };
 

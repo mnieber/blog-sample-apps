@@ -41,10 +41,3 @@ export function createNavFunction<BoundNavFn extends BoundNavFunctionT>(
 }
 
 export const stub = undefined as unknown as NavTargetT;
-
-export const assertNavFnType = <NavFn extends NavFunctionT>(
-  navFn: NavFn,
-  boundNavFn: ReturnType<NavFn>
-) => {
-  return boundNavFn;
-};
