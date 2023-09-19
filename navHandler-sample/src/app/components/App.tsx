@@ -25,17 +25,17 @@ export const App = () => {
             </div>
             <div>
               - PostListView calls navContext = useNavContext("PostListView") to
-              obtain the navigation handlers from all enclosing
+              obtain a navigation context from all enclosing
               NavHandlersProviders. Here, "PostListView" is the requester id;
             </div>
             <div>
               - When a post is clicked then PostListView calls
-              navToPost(navContext)(postId).go();
+              toPost(navContext)(postId).nav();
             </div>
             <div>
-              - This will execute getBoundNavFunction(navContext, "navToPost")
-              to return the "navToPost" navigation function (found in either
-              PostsNavHandler or ArchivedPostsNavHandler);
+              - This will use getBoundNavFunction(navContext, "toPost") to
+              return the "toPost" navigation function from either
+              PostsNavHandler or ArchivedPostsNavHandler;
             </div>
           </div>
           <UrlRouter />
