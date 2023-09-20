@@ -3,7 +3,7 @@ import { withDefaultProps } from 'react-default-props-context';
 import { PostT } from '/src/api/types';
 import { useNavContext } from '/src/navHandler';
 import { PostListViewItem } from '/src/posts/components';
-import { navToPost } from '/src/posts/navFunctions';
+import { toPost } from '/src/posts/navFunctions';
 import { cn } from '/src/utils/classnames';
 
 // Import styles
@@ -22,7 +22,12 @@ export const PostListView = observer(
     const navContext = useNavContext('PostListView');
 
     const postDivs = props.posts.map((post) => {
-      const navTarget = navContext.navTarget(navToPost)(post.id);
+      // Here, we obtain a navTarget that contains both the target url
+      // and the nav() function that navigates to that url. We can also
+      // call navContext.url(toPost)(post.id) to obtain the url, and
+      // call navContext.nav(toPost)(post.id) to navigate. In this case, since
+      // we need both the url and the nav function, we use navTarget.
+      const navTarget = navContext.navTarget(toPost)(post.id);
       return (
         <PostListViewItem
           key={post.id}

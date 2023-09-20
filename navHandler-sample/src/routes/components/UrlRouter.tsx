@@ -2,9 +2,9 @@
 The UrlRouter calls useRoutes to get the routing table for the application.
 In this routing table, there are two main branches: /posts and /archived-posts.
 If we render a page in /posts, then the PostsNavHandler will be mounted. In this case,
-calls to navToPost will be routed to /posts/:postId. Similarly, if we render a page
+calls to navContext.nav(toPost) will be routed to /posts/:postId. Similarly, if we render a page
 in /archived-posts, then the ArchivedPostsNavHandler will be mounted, and calls to
-navToPost will be routed to /archived-posts/:postId.
+navContext.nav(toPost) will be routed to /archived-posts/:postId.
 
 Continue by:
 - reading the useRoutes.ts file.

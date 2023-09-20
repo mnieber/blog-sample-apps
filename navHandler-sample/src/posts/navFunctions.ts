@@ -1,6 +1,6 @@
 import { createNavFunction, stubNavTarget } from '/src/navHandler';
 
-export const navToPost = createNavFunction(
-  'navToPost',
+export const toPost = createNavFunction(
+  'toPost',
   (postId: string) => stubNavTarget
 );

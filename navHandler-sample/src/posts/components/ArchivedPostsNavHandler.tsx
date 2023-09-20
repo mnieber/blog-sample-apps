@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavContext, NavHandlersProvider } from '/src/navHandler';
-import { navToPost } from '/src/posts/navFunctions';
+import { toPost } from '/src/posts/navFunctions';
 import type { RoutesT as PostsRoutesT } from '/src/posts/routeTable';
 import { history } from '/src/routes/history';
 import { getRouteFns } from '/src/routes/routeTable';
@@ -8,10 +8,10 @@ import { useBuilder } from '/src/utils/hooks/useBuilder';
 
 export const createNavFunctionTable = () => {
   return {
-    navToPost: ((navContext: NavContext) => (postId: string) => {
+    toPost: ((navContext: NavContext) => (postId: string) => {
       const url = getRouteFns<PostsRoutesT>().archivedPost({ postId });
       return { url, nav: () => history.push(url) };
-    }) as typeof navToPost,
+    }) as typeof toPost,
   };
 };
 
