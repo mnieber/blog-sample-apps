@@ -58,10 +58,11 @@ export const TodoListView = observer(
       <TodoListViewItem
         key={todo.id}
         className={{
-          'TodoListViewItem--selected': props.todosSelection.ids.includes(
+          'TodoListViewItem--selected': props.todosSelection.itemIds.includes(
             todo.id
           ),
-          'TodoListViewItem--highlighted': props.todosHighlight.id === todo.id,
+          'TodoListViewItem--highlighted':
+            props.todosHighlight.itemId === todo.id,
         }}
         todo={todo}
         selectionUIProps={selectionUIConnector.handle(todo.id)}

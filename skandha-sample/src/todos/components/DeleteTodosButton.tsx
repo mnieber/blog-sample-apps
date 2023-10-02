@@ -24,7 +24,7 @@ export const DefaultProps = {
 export const DeleteTodosButton = observer(
   withDefaultProps((props: PropsT & typeof DefaultProps) => {
     const disabled =
-      props.todosSelection.ids.length === 0 || isUpdating(props.todos);
+      props.todosSelection.itemIds.length === 0 || isUpdating(props.todos);
 
     return (
       <button
@@ -39,7 +39,7 @@ export const DeleteTodosButton = observer(
           props.className
         )}
         onClick={() =>
-          props.todosDeletion.delete({ itemIds: props.todosSelection.ids })
+          props.todosDeletion.delete({ itemIds: props.todosSelection.itemIds })
         }
       >
         Delete selected todos

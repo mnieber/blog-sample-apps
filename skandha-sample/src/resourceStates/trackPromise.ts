@@ -1,5 +1,5 @@
-import { stub } from 'aspiration';
 import { action, makeAutoObservable } from 'mobx';
+import { stub } from 'skandha';
 import { addSource } from '/src/resourceStates/addSource';
 import { createUUID } from '/src/utils/ids';
 import { ObjT } from '/src/utils/types';

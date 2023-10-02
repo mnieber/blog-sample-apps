@@ -13,10 +13,10 @@ Note that because we are using the registerCtr function from skandha-mobx (inste
 from skandha) the facets in todosCtr are observable with MobX.
 */
 
-import { setCallbackMap } from 'aspiration';
+import { Cbs } from 'aspiration';
 import * as R from 'ramda';
 import { mapDataToProps } from 'skandha';
-import { DeletionCbs, SelectionCbs, handleSelectItem } from 'skandha-facets';
+import { Deletion, Selection, handleSelectItem } from 'skandha-facets';
 import { correctHighlight } from 'skandha-facets/policies';
 import { registerCtr } from 'skandha-mobx';
 import { TodoT } from '/src/api/types';
@@ -40,10 +40,10 @@ const mapData = (state: TodosState) => {
     selection: {
       selectableIds: () => R.map(R.prop('id'), ctr.data.filteredTodos),
     },
-    // We look up the highlighted item by 'highlight.id'.
+    // We look up the highlighted item by 'highlight.itemId'.
     highlight: {
       item: () =>
-        ctr.highlight.id ? getTodoById(ctr.highlight.id) : undefined,
+        ctr.highlight.itemId ? getTodoById(ctr.highlight.itemId) : undefined,
     },
   });
 };
@@ -51,30 +51,30 @@ const mapData = (state: TodosState) => {
 const setCallbacks = (state: TodosState) => {
   const ctr = state.todosCtr;
 
-  setCallbackMap(ctr.deletion, {
+  ctr.deletion.callbackMap = {
     delete: {
-      deleteItems(this: DeletionCbs['delete']) {
+      deleteItems(this: Cbs<Deletion['delete']>) {
         return state.props.deleteTodos(this.args.itemIds);
       },
     },
-  });
+  };
 
-  setCallbackMap(ctr.selection, {
+  ctr.selection.callbackMap = {
     // Here we implement the callbacks of the Selection.selectItem function.
     selectItem: {
       // Implement the 'selectItem' callback.
-      selectItem(this: SelectionCbs['selectItem']) {
+      selectItem(this: Cbs<Selection['selectItem']>) {
         // Perform the selection
         handleSelectItem(ctr.selection, this.args);
         // Apply the policy that highlight follows selection
         if (!this.args.isCtrl && !this.args.isShift) {
-          ctr.highlight.highlightItem({ id: this.args.itemId });
+          ctr.highlight.set({ itemId: this.args.itemId });
         }
       },
     },
-  });
+  };
 
-  setCallbackMap(ctr.filtering, {
+  ctr.filtering.callbackMap = {
     // Here we implement the callbacks of the Filtering.setEnabled function.
     setEnabled: {
       // Implement the 'exit' callback. This is a special callback that is
@@ -89,7 +89,7 @@ const setCallbacks = (state: TodosState) => {
         );
       },
     },
-  });
+  };
 };
 
 export const registerTodosCtr = (state: TodosState) => {
