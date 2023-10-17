@@ -7,7 +7,8 @@ the value of todosFiltering.isEnabled changes.
 */
 
 import { observer } from 'mobx-react-lite';
-import { dps, withDefaultProps } from '/src/app/defaultProps';
+import { withContextProps } from 'react-props-from-context';
+import { todosCtx } from '/src/todos/hooks/useTodosContext';
 import { cn } from '/src/utils/classnames';
 
 // Import styles
@@ -17,12 +18,12 @@ export type PropsT = {
   className?: any;
 };
 
-export const DefaultProps = {
-  ...dps.todosFiltering,
+export const ContextProps = {
+  todosFiltering: todosCtx.todosFiltering,
 };
 
 export const TodosFilter = observer(
-  withDefaultProps((props: PropsT & typeof DefaultProps) => {
+  withContextProps((props: PropsT & typeof ContextProps) => {
     const toggleFilter = () =>
       props.todosFiltering.setEnabled({
         flag: !props.todosFiltering.isEnabled,
@@ -41,5 +42,5 @@ export const TodosFilter = observer(
         </div>
       </div>
     );
-  }, DefaultProps)
+  }, ContextProps)
 );

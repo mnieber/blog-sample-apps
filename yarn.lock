@@ -1270,11 +1270,6 @@ ramda@^0.29.0:
   resolved "https://registry.yarnpkg.com/ramda/-/ramda-0.29.0.tgz#fbbb67a740a754c8a4cbb41e2a6e0eb8507f55fb"
   integrity sha512-BBea6L67bYLtdbOqfp8f58fPMqEwx0doL+pAi8TZyp2YWz8R9G8z9x75CZI8W+ftqhFHCpEX2cRnUUXK130iKA==
 
-react-default-props-context@^2.1.0:
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/react-default-props-context/-/react-default-props-context-2.1.0.tgz#7ea29dfb43af43247c2347752a8fd66e7fe43b92"
-  integrity sha512-Q1k9ftf0M92+hlqW5w434T5dIy7rJ5shiS2+PCgY/996W4GxBpViOf1GqCC97zBPpmoJIfd9349QHcXsVuxIdw==
-
 react-dom@^18.2.0:
   version "18.2.0"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-18.2.0.tgz#22aaf38708db2674ed9ada224ca4aa708d821e3d"
@@ -1292,6 +1287,11 @@ react-keyboard-event-handler@^1.5.4:
   version "1.5.4"
   resolved "https://registry.yarnpkg.com/react-keyboard-event-handler/-/react-keyboard-event-handler-1.5.4.tgz#bd0ccafbf62a96f605ddac78828f22efc54181f0"
   integrity sha512-MSOxU/sQ5q9XWNHhXAJxzh4xVLZjKORGNC2Pzvx3qUo24TQeztGB0tq8oSArwX6vfKSIVijiw8wBmkN5pJOB4w==
+
+react-props-from-context@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-props-from-context/-/react-props-from-context-1.0.0.tgz#a63091504d461a34d03ec275fb93a75fed460983"
+  integrity sha512-Ej3Qf02ioFwIQG2hcSpqo2ntuP4Kew5PN4i33CchJq+8qO4Ykbj5g535TuRQEg6IMac5umYGauVP5KTcEs0gew==
 
 react-refresh@^0.14.0:
   version "0.14.0"

@@ -13,18 +13,18 @@ code of TodoListViewItem, you will see that it uses the isUpdating function to i
 resource state of the todo that it renders. The item will blink if the todo is updating
 (this is the case when the todo is being deleted).
 */
-
 import { observer } from 'mobx-react-lite';
 import * as R from 'ramda';
 import KeyboardEventHandler from 'react-keyboard-event-handler';
+import { withContextProps } from 'react-props-from-context';
 import {
   SelectionUIConnector,
   createSelectionKeyHandlers,
 } from 'skandha-facets';
 import { TodoT } from '/src/api/types';
-import { dps, withDefaultProps } from '/src/app/defaultProps';
 import { isLoading } from '/src/resourceStates/getState';
 import { TodoListViewItem } from '/src/todos/components';
+import { todosCtx } from '/src/todos/hooks/useTodosContext';
 import { createKeyDownHandler } from '/src/utils';
 
 // Import styles
@@ -32,14 +32,14 @@ import './TodoListView.scss';
 
 export type PropsT = {};
 
-const DefaultProps = {
-  ...dps.todos,
-  ...dps.todosSelection,
-  ...dps.todosHighlight,
+const ContextProps = {
+  todos: todosCtx.todos,
+  todosSelection: todosCtx.todosSelection,
+  todosHighlight: todosCtx.todosHighlight,
 };
 
 export const TodoListView = observer(
-  withDefaultProps((props: PropsT & typeof DefaultProps) => {
+  withContextProps((props: PropsT & typeof ContextProps) => {
     if (isLoading(props.todos)) {
       return <div>Loading...</div>;
     }
@@ -79,5 +79,5 @@ export const TodoListView = observer(
         </div>
       </KeyboardEventHandler>
     );
-  }, DefaultProps)
+  }, ContextProps)
 );

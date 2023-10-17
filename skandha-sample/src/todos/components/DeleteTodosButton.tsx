@@ -4,8 +4,9 @@ todosDeletion, passing the ids of the selected todos.
 */
 
 import { observer } from 'mobx-react-lite';
-import { dps, withDefaultProps } from '/src/app/defaultProps';
+import { withContextProps } from 'react-props-from-context';
 import { isUpdating } from '/src/resourceStates/getState';
+import { todosCtx } from '/src/todos/hooks/useTodosContext';
 import { cn } from '/src/utils/classnames';
 
 // Import styles
@@ -15,14 +16,14 @@ export type PropsT = {
   className?: any;
 };
 
-export const DefaultProps = {
-  ...dps.todos,
-  ...dps.todosDeletion,
-  ...dps.todosSelection,
+export const ContextProps = {
+  todos: todosCtx.todos,
+  todosDeletion: todosCtx.todosDeletion,
+  todosSelection: todosCtx.todosSelection,
 };
 
 export const DeleteTodosButton = observer(
-  withDefaultProps((props: PropsT & typeof DefaultProps) => {
+  withContextProps((props: PropsT & typeof ContextProps) => {
     const disabled =
       props.todosSelection.itemIds.length === 0 || isUpdating(props.todos);
 
@@ -45,5 +46,5 @@ export const DeleteTodosButton = observer(
         Delete selected todos
       </button>
     );
-  }, DefaultProps)
+  }, ContextProps)
 );

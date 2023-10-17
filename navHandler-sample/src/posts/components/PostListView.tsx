@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite';
-import { withDefaultProps } from 'react-default-props-context';
-import { PostT } from '/src/api/types';
+import { withContextProps } from 'react-props-from-context';
 import { useNavContext } from '/src/navHandler';
 import { PostListViewItem } from '/src/posts/components';
+import { postsCtx } from '/src/posts/hooks/usePostsContext';
 import { toPost } from '/src/posts/navFunctions';
 import { cn } from '/src/utils/classnames';
 
@@ -13,12 +13,12 @@ export type PropsT = {
   className?: any;
 };
 
-export const DefaultProps = {
-  posts: [] as PostT[],
+export const ContextProps = {
+  posts: postsCtx.posts,
 };
 
 export const PostListView = observer(
-  withDefaultProps((props: PropsT & typeof DefaultProps) => {
+  withContextProps((props: PropsT & typeof ContextProps) => {
     const navContext = useNavContext('PostListView');
 
     const postDivs = props.posts.map((post) => {
@@ -51,5 +51,5 @@ export const PostListView = observer(
         {postDivs}
       </div>
     );
-  }, DefaultProps)
+  }, ContextProps)
 );

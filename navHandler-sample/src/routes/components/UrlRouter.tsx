@@ -11,7 +11,6 @@ Continue by:
 */
 
 import { observer } from 'mobx-react-lite';
-import { DefaultPropsProvider } from 'react-default-props-context';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import { getPosts } from '/src/api/queries/getPosts';
 import { NavBar } from '/src/frames/components/NavBar';
@@ -19,6 +18,7 @@ import { ArchivedPostsNavHandler } from '/src/posts/components/ArchivedPostsNavH
 import { PostListView } from '/src/posts/components/PostListView';
 import { PostView } from '/src/posts/components/PostView';
 import { PostsNavHandler } from '/src/posts/components/PostsNavHandler';
+import { PostsContext } from '/src/posts/hooks/usePostsContext';
 import type { RoutesT as PostsRoutesT } from '/src/posts/routeTable';
 import { getRouteFns } from '/src/routes/routeTable';
 
@@ -37,26 +37,22 @@ export const UrlRouter = observer((props: PropsT) => {
         </Route>
         <Route path={routeFns.posts()}>
           <PostsNavHandler>
-            <DefaultPropsProvider
-              value={{ defaultProps: { posts: () => posts.posts } }}
-            >
+            <PostsContext.Provider value={{ posts: posts.posts }}>
               <PostListView className="mt-2" />
               <Route path={routeFns.post()}>
                 <PostView className="mt-8 self-start" />
               </Route>
-            </DefaultPropsProvider>
+            </PostsContext.Provider>
           </PostsNavHandler>
         </Route>
         <Route path={routeFns.archivedPosts()}>
           <ArchivedPostsNavHandler>
-            <DefaultPropsProvider
-              value={{ defaultProps: { posts: () => posts.archivedPosts } }}
-            >
+            <PostsContext.Provider value={{ posts: posts.archivedPosts }}>
               <PostListView className="mt-2" />
               <Route path={routeFns.archivedPost()}>
                 <PostView className="mt-8 self-start" />
               </Route>
-            </DefaultPropsProvider>
+            </PostsContext.Provider>
           </ArchivedPostsNavHandler>
         </Route>
       </Switch>

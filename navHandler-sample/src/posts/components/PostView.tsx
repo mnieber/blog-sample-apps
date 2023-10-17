@@ -1,7 +1,7 @@
 import { observer } from 'mobx-react-lite';
-import { stub, withDefaultProps } from 'react-default-props-context';
+import { withContextProps } from 'react-props-from-context';
 import { useParams } from 'react-router-dom';
-import { PostT } from '/src/api/types';
+import { postsCtx } from '/src/posts/hooks/usePostsContext';
 import { cn } from '/src/utils/classnames';
 import { ObjT } from '/src/utils/types';
 
@@ -12,12 +12,12 @@ export type PropsT = {
   className?: any;
 };
 
-export const DefaultProps = {
-  posts: stub as PostT[],
+export const ContextProps = {
+  posts: postsCtx.posts,
 };
 
 export const PostView = observer(
-  withDefaultProps((props: PropsT & typeof DefaultProps) => {
+  withContextProps((props: PropsT & typeof ContextProps) => {
     const params = useParams() as ObjT;
     const post = props.posts.find((post) => post.id === params.postId);
     return (
@@ -30,5 +30,5 @@ export const PostView = observer(
         </div>
       </div>
     );
-  }, DefaultProps)
+  }, ContextProps)
 );
